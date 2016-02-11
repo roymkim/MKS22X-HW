@@ -2,6 +2,9 @@ public class QueenBoard{
     private int[][]board;
     
     public QueenBoard(int size){
+	if (size <= 0){
+	    throw new IllegalArgumentException("No Imaginary Boards");
+	}
 	board = new int[size][size];
     }
 
@@ -16,10 +19,7 @@ public class QueenBoard{
      */
     public boolean solve()
     {
-	for (int c = 0; c<board.length; c++){
-	    return solveH(c);
-	}
-	return false;
+	return solveH(0);
     }
 
     /**
@@ -33,10 +33,9 @@ public class QueenBoard{
 	    if (addQueen(r, col)){
 		addQueen(r, col);
 		if (solveH(col+1)){
-		    return true;
+                    return true;
 		} 
 		removeQueen(r, col);
-		System.out.println(toString());
 	    }
 	}
 	return false;
@@ -50,9 +49,7 @@ public class QueenBoard{
 	String ans = "";
 	for (int r = 0; r < board.length; r++){
 	    for (int c = 0; c < board[r].length; c++){
-		if (board[r][c] < 0){
-		    ans+=" \t";
-		} else if (board[r][c] == 1){
+		if (board[r][c] == 1){
 		    ans+="Q\t";
 		} else {
 		    ans+="_\t";
@@ -115,11 +112,11 @@ public class QueenBoard{
     }
     
     public static void main(String[]args){
-    QueenBoard b = new QueenBoard(4);
-        System.out.println(b);
-	b.addQueen(1,0);
-       	b.addQueen(1,3);
-        System.out.println(b);
+	QueenBoard b = new QueenBoard(Integer.parseInt(args[0]));
+        //System.out.println(b);
+	//b.addQueen(1,0);
+       	//b.addQueen(1,3);
+        //System.out.println(b);
 	//b.removeQueen(3,0);
         //System.out.println(b);
        	System.out.println(b.solve());
