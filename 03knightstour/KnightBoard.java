@@ -1,5 +1,11 @@
 public class KnightBoard{
     private int[][]board;
+    private static boolean DEBUG = true;
+
+    private void debug(String s){
+	if (DEBUG)
+	    System.out.println();
+    }
     
     public KnightBoard(int size){
 	if (size <= 0){
