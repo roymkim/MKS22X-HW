@@ -1,6 +1,7 @@
 import java.io.File;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 public class Bronze{
 
@@ -48,17 +49,24 @@ public class Bronze{
 
     public static void main(String[]args){
 	File file = new File("Lakes.txt");
-	String pasture = "";
+	ArrayList<String> Instruction = new ArrayList<String>();
 	try {
 	    Scanner sc = new Scanner(file);
 	    while (sc.hasNextLine()){
 		String line = sc.nextLine();
-		pasture+=line+"\n";
+		for (int i = 0; i < line.length(); i++){
+		    if (line.substring(i,i+1) != " "){
+		    }
+		}
+		Instruction.add(line);
 	    }
 	    sc.close();
 	} catch (FileNotFoundException e){
 	    System.out.println("Didn't find "+file.toString()+".");
 	}
-	System.out.println(pasture);
+       	//System.out.println(Instruction.toString());
+	String order = Instruction.get(0);
+	
+	//int row = Instruction.get
     }
 }
