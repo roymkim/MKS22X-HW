@@ -1,4 +1,9 @@
+import java.io.File;
+import java.util.Scanner;
+import java.io.FileNotFoundException;
+
 public class Bronze{
+
     /**
      *precondition: 
      *-Pasture rows and columns are between 3 and 100 inclusive.
@@ -42,6 +47,18 @@ public class Bronze{
     }
 
     public static void main(String[]args){
-	
+	File file = new File("Lakes.txt");
+	String pasture = "";
+	try {
+	    Scanner sc = new Scanner(file);
+	    while (sc.hasNextLine()){
+		String line = sc.nextLine();
+		pasture+=line+"\n";
+	    }
+	    sc.close();
+	} catch (FileNotFoundException e){
+	    System.out.println("Didn't find "+file.toString()+".");
+	}
+	System.out.println(pasture);
     }
 }
