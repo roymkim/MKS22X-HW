@@ -49,24 +49,24 @@ public class Bronze{
 
     public static void main(String[]args){
 	File file = new File("Lakes.txt");
-	ArrayList<String> Instruction = new ArrayList<String>();
+	ArrayList<Integer> Instruction = new ArrayList<Integer>();
 	try {
 	    Scanner sc = new Scanner(file);
-	    while (sc.hasNextLine()){
-		String line = sc.nextLine();
-		for (int i = 0; i < line.length(); i++){
-		    if (line.substring(i,i+1) != " "){
-		    }
-		}
-		Instruction.add(line);
+	    while (sc.hasNextInt()){
+		int i = sc.nextInt();
+		Instruction.add(i);
 	    }
 	    sc.close();
 	} catch (FileNotFoundException e){
 	    System.out.println("Didn't find "+file.toString()+".");
 	}
-       	//System.out.println(Instruction.toString());
-	String order = Instruction.get(0);
-	
-	//int row = Instruction.get
+       	System.out.println(Instruction.toString());
+	int row = Instruction.get(0);
+	int col = Instruction.get(1);
+	int elevation = Instruction.get(2);
+	int order = Instruction.get(3);
+	int[][] pasture = new int[row][col];
+        for (int i = 4; i < 4 + row * col; i++){
+	    
+	}
     }
-}
