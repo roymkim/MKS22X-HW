@@ -4,7 +4,6 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class Bronze{
-
     /**
      *precondition: 
      *-Pasture rows and columns are between 3 and 100 inclusive.
@@ -13,20 +12,18 @@ public class Bronze{
      *postcondition:
      *-The pasture is adjusted with the given order to stomp
      */
-    public void stomp(int[][] pasture, int row, int col, int depth){
-	row = row--; //adjusting the coordinates so that the first col and row is 1,1 not 0,0
-	col = col--;
+    public static void stomp(int[][] pasture, int row, int col, int depth){
 	for (int d = depth; d > 0; d--){
 	    int maxElevation = pasture[row][col];
-	    for (int r = row; r < row+3; r++){
-		for (int c = col; c < col+3; c++){
+	    for (int r = row-1; r < row+2; r++){//adjusting coordinates
+		for (int c = col-1; c < col+2; c++){
 		    if (pasture[r][c] > maxElevation){
 			maxElevation = pasture[r][c];
 		    }
 		}
 	    }
-	    for (int r = row; r < row+3; r++){
-		for (int c = col; c < col+3; c++){
+	    for (int r = row-1; r < row+2; r++){
+		for (int c = col-1; c < col+2; c++){
                     if (pasture[r][c] == maxElevation){
 			pasture[r][c]--;
                     }
@@ -35,7 +32,7 @@ public class Bronze{
 	}
     }
 
-    public int calculateLakeVolume(int[][] pasture, int elevation){
+    public static int calculateLakeVolume(int[][] pasture, int elevation){
 	int sum = 0;
 	for (int r = 0; r < pasture.length; r++){
 	    for (int c = 0; c < pasture[r].length; c++){
@@ -46,27 +43,49 @@ public class Bronze{
 	}
 	return sum * 72 * 72;
     }
+    
+    public static String toString(int[][] array){
+	String ans = "";
+	for (int r = 0; r < array.length; r++){
+	    for (int c = 0; c < array[r].length; c++){
+		ans+= array[r][c] + "\t";
+	    }
+	    ans+="\n";
+	}
+	return ans;
+    }
 
     public static void main(String[]args){
-	File file = new File("Lakes.txt");
-	ArrayList<Integer> Instruction = new ArrayList<Integer>();
 	try {
+	    File file = new File("makelake.in");
 	    Scanner sc = new Scanner(file);
-	    while (sc.hasNextInt()){
-		int i = sc.nextInt();
-		Instruction.add(i);
+	    int R = sc.nextInt(); //row
+	    int C = sc.nextInt(); //col
+	    int E = sc.nextInt(); //elevation
+	    int N = sc.nextInt(); //sets of commands
+	    sc.nextLine();
+	    int[][] pasture = new int[R][C];
+	    for(int r = 0; r < pasture.length; r++){
+		for(int c = 0; c < pasture[r].length; c++){
+		    pasture[r][c] = sc.nextInt();
+		}
+	    }
+	    int[][] instructions = new int[N][3];
+	    for (int r = 0; r < instructions.length; r++){
+		for (int c = 0; c < instructions[r].length; c++){
+		    instructions[r][c] = sc.nextInt();
+		}
 	    }
 	    sc.close();
+	    for (int r = 0; r < instructions.length; r++){
+		stomp(pasture, instructions[r][0], instructions[r][1], instructions[r][2]);
+	    }
+	    int volume = calculateLakeVolume(pasture, E);
+	    System.out.println(volume + ",7,Kim,Roy");
+	    //System.out.println(toString(pasture));
+	    //System.out.println(toString(instructions));
 	} catch (FileNotFoundException e){
-	    System.out.println("Didn't find "+file.toString()+".");
-	}
-       	System.out.println(Instruction.toString());
-	int row = Instruction.get(0);
-	int col = Instruction.get(1);
-	int elevation = Instruction.get(2);
-	int order = Instruction.get(3);
-	int[][] pasture = new int[row][col];
-        for (int i = 4; i < 4 + row * col; i++){
-	    
-	}
+		System.out.println("Didn't find makeLakes.in.");
+	}	    
     }
+}
