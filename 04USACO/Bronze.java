@@ -85,7 +85,7 @@ public class Bronze{
 	    //System.out.println(toString(pasture));
 	    //System.out.println(toString(instructions));
 	} catch (FileNotFoundException e){
-		System.out.println("Didn't find makeLakes.in.");
+		System.out.println("Didn't find makelake.in.");
 	}	    
     }
 }
