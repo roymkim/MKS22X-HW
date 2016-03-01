@@ -19,27 +19,36 @@ public class Maze{
       3. When the file is not found, print an error and exit the program.
     */
     public Maze(String filename, boolean ani){
-        startx = 0;
-	starty = 0;
+        startx = -1;
 	animate = ani;
 	try{
 	    Scanner sc = new Scanner(new File(filename));
-	    ArrayList<String> rows = new ArrayList<String>();
-	    while(sc.hasNextLine()){
-		lines.rows(sc.nextLine());
+	    String line = "";
+	    int row = 0;
+   	    while(sc.hasNextLine()){
+		row++;
+		line = sc.nextLine();
 	    }
-	    maze = new char[rows.size()][rows.get(0).length()];
-	    for (int i = 0; i < rows.size(); i++){
-		String row = rows.get(i);
-		for (int j = 0; j < row.length(); j++){
+	    sc.close();
+	    maze = new char[row][line.length()];
+	    String grid = "";
+	    Scanner in = new Scanner(new File(filename));
+	    while(in.hasNextLine()){
+		grid += in.nextLine();
+	    }
+	    for (int i = 0; i < row; i++){
+		for (int j = 0; j < line.length(); j++){
+		    maze[i][j] = grid.charAt(i*line.length()+j);
+		    if (maze[i][j] == 'S'){
+			startx = i;
+			starty = j;
+		    }
 		}
 	    }
 	} catch (FileNotFoundException e){
 	    System.out.println("Error! File Not Found");
 	}
-
     }
-
 
     /*Main Solve Function
 
@@ -95,10 +104,10 @@ public class Maze{
             ans = "Solving a maze that is " + maxx + " by " + maxy + "\n";
         }
         for(int i = 0; i < maxx * maxy; i++){
-            if(i % maxx == 0 && i != 0){
+            if(i % maxy == 0 && i != 0){
                 ans += "\n";
             }
-            char c =  maze[i % maxx][i / maxx];
+            char c =  maze[i / maxy][i % maxy];
             if(c == '#'){
                 ans += color(38,47)+c;
             }else{
