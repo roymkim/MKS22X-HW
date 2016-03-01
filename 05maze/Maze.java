@@ -84,9 +84,41 @@ public class Maze{
             System.out.println(this);
             wait(20);
         }
-
-        //COMPLETE SOLVE
-        return false; //so it compiles
+	if (maze[x][y] == 'E'){
+	    return true;
+	} else {
+	    maze[x][y] = '@';
+	}
+	if (maze[x+1][y]!='#' && 
+	    maze[x+1][y]!='.' &&
+	    maze[x+1][y]!='@'){
+	    if (solve(x+1,y)){
+		return true;
+	    }
+	}
+	if (maze[x-1][y]!='#' &&
+            maze[x-1][y]!='.' &&
+            maze[x-1][y]!='@'){
+	    if (solve(x-1,y)){
+                return true;
+            }
+        }
+        if (maze[x][y+1]!='#' &&
+            maze[x][y+1]!='.' &&
+            maze[x][y+1]!='@'){
+	    if (solve(x,y+1)){
+                return true;
+            }
+        }
+        if (maze[x][y-1]!='#' &&
+            maze[x][y-1]!='.' &&
+            maze[x][y-1]!='@'){
+	    if (solve(x,y-1)){
+                return true;
+            }
+        }
+	maze[x][y] = '.';
+	return false;
     }
 
 
