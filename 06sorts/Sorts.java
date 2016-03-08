@@ -1,5 +1,9 @@
 import java.util.Arrays;
 public class Sorts{
+    public static String name(){
+	return "7,Kim,Roy";
+    }
+
     public static void insertionSort(int[] arr){
 	int current;
 	int pos;
