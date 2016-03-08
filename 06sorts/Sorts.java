@@ -75,7 +75,7 @@ public class Sorts{
 	return ans;
     }
 
-    public static void mergeSort(int[] arr){
+    public static void mergesort(int[] arr){
 	if (arr.length == 1){
 	    return;
 	} 
