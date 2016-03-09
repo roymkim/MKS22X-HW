@@ -13,7 +13,7 @@ public class Quick{
 
     private static int partition(int[] data, int left, int right){
 	Random rand = new Random();
-	int pivot = left + rand.nextInt(right-left);
+	int pivot = left + rand.nextInt(right-left+1); //(int)(left + Math.random()*(right - left + 1)) 
 	int pivotVal = data[pivot];
 	swap(data, pivot, right);
 	int pos = left;
