@@ -1,6 +1,10 @@
 //Credits to Wikipedia for helping me with the algorithim
 import java.util.Random;
 public class Quick{
+    public static String name(){
+	return "7,Kim,Roy";
+    }
+
     private static void swap(int[] ary, int target, int rep){
 	int temp = ary[rep];
 	ary[rep] = ary[target];
