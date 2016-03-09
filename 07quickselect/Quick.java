@@ -44,4 +44,12 @@ public class Quick{
 	    return quickselect(data, k, pivot+1, right);
 	}
     }
+
+    private static void quickSort(int[] data, int k, int left, int right){
+	
+    }
+
+    private static void main(String[]args){
+    
+    }
 }
