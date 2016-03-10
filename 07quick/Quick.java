@@ -61,7 +61,6 @@ public class Quick{
 	    int pivot = partition(data, left, right);
 	    quickSort(data, left, pivot);
 	    quickSort(data, pivot + 1, right);
-	    debug(Arrays.toString(data));
 	}
     }
 
