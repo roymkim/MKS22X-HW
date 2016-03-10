@@ -1,4 +1,4 @@
-//Credits to Wikipedia for helping me with the algorithim
+//Credits to Wikipedia for helping me with the algorithim to quickselect
 import java.util.Random;
 public class Quick{
     public static String name(){
@@ -27,7 +27,7 @@ public class Quick{
 	return pos;
     }
     
-    private static int quickselect(int[] data, int k){
+    public static int quickselect(int[] data, int k){
 	return quickselect(data, k, 0, data.length-1);
     }
 
@@ -45,7 +45,11 @@ public class Quick{
 	}
     }
 
-    private static void quickSort(int[] data, int k, int left, int right){
+    public static void quickSort(int[] data){
+	quickSort(int[] data, 0, data.length-1);
+    }
+    
+    private static void quickSort(int[] data, int left, int right){
 	
     }
 
