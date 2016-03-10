@@ -1,8 +1,16 @@
 //Credits to Wikipedia for helping me with the algorithim to quickselect
-import java.util.Random;
+import java.util.Arrays;
 public class Quick{
+    static boolean DEBUG = false;
+
     public static String name(){
 	return "7,Kim,Roy";
+    }
+
+    private static void debug(String s){
+	if (DEBUG == true){
+	    System.out.println(s);
+	}
     }
 
     private static void swap(int[] ary, int target, int rep){
@@ -12,8 +20,7 @@ public class Quick{
     }
 
     private static int partition(int[] data, int left, int right){
-	Random rand = new Random();
-	int pivot = left + rand.nextInt(right-left+1); //(int)(left + Math.random()*(right - left + 1)) 
+	int pivot = left + (int)(Math.random()*(right - left + 1)); 
 	int pivotVal = data[pivot];
 	swap(data, pivot, right);
 	int pos = left;
@@ -46,14 +53,21 @@ public class Quick{
     }
 
     public static void quickSort(int[] data){
-	quickSort(int[] data, 0, data.length-1);
+	quickSort(data, 0, data.length-1);
     }
     
     private static void quickSort(int[] data, int left, int right){
-	
+	if (right > left){
+	    int pivot = partition(data, left, right);
+	    quickSort(data, left, pivot);
+	    quickSort(data, pivot + 1, right);
+	    debug(Arrays.toString(data));
+	}
     }
 
-    private static void main(String[]args){
-    
+    public static void main(String[]args){
+	int[] test = {0, 0, 0, -1, -2, 0, 1111, 0, 1333, 1, 2, 4, 3, 2, 144};		
+	quickSort(test);
+	System.out.println(Arrays.toString(test));
     }
 }
