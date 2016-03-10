@@ -1,4 +1,4 @@
-//Credits to Wikipedia for helping me with the algorithim to quickselect
+//Credits to Mr. K and Wiki for the algorithim
 import java.util.Arrays;
 public class Quick{
     static boolean DEBUG = false;
