@@ -1,7 +1,7 @@
 //Credits to Mr. K and Wiki 
 import java.util.Arrays;
 public class Quick{
-    static boolean DEBUG = true;
+    static boolean DEBUG = false;
 
     public static String name(){
 	return "7,Kim,Roy";
