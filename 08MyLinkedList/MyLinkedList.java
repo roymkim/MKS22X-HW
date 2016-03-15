@@ -8,6 +8,7 @@ public class MyLinkedList{
     }
 
     int set(int index, int newValue){
+    
     }
 
     int size(){
@@ -32,5 +33,17 @@ public class MyLinkedList{
     }
 
     public class LNode{
+	private int value;
+	private LNode next; 
+
+	public LNode(int x){
+	    value = x;
+	}
+
+	public int get(){
+	    return value;
+	}
+
+	
     }
 }
