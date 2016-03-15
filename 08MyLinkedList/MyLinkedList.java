@@ -1,34 +1,40 @@
 public class MyLinkedList{
-    private LNode start;
     private LNode head;
     private int size;
 
-    int get(int index){
+    public MyLinkedList(){
+	head = new LNode(null);
+	size = 0;
+    }
+    
+    public int get(int index){
 	
     }
 
-    int set(int index, int newValue){
+    public int set(int index, int newValue){
     
     }
 
-    int size(){
+    public int size(){
+	return size;
     }
     
-    int remove(int index){
+    public int remove(int index){
     }
 
-    boolean add(int index, int value){
+    public boolean add(int index, int value){
+	
     }
 
-    boolean add(int value){
-    
-    }
-
-    int indexOf(int value){
+    public boolean add(int value){
     
     }
 
-    String toString(){
+    public int indexOf(int value){
+    
+    }
+
+    public String toString(){
     
     }
 
