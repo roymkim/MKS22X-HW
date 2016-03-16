@@ -1,4 +1,34 @@
 public class MyLinkedList{
+    private class LNode{
+	private int value;
+	private LNode next; 
+
+	public LNode(int v){
+	    value = v;
+	}
+
+	public LNode(int value, LNode next){
+	    this.value = value;
+	    this.next = next;
+	}
+
+	public int getValue(){
+	    return value;
+	}
+
+	public void setValue(int v){
+	    value = v;
+	}
+
+	public LNode getNext(){
+	    return next;
+	}
+
+	public void setNext(LNode n){
+	    next = n;
+	}
+    }
+
     private LNode start;
     private int size;
 
@@ -62,15 +92,15 @@ public class MyLinkedList{
     }
 
     public boolean add(int value){
-	LNode temp = new LNode(value);
-	LNode current = start;
-	while(current.getNext() != null){
-	    current = current.getNext();
-	} 
-	if (current == null){
-	    return false;
+	if (start == null){
+	    start = new LNode(value);
+	} else {
+	    LNode current = start;
+	    while(current.getNext() != null){
+		current = current.getNext();
+	    } 
+	current.setNext(new LNode(value));
 	}
-	current.setNext(temp);
 	size++;
 	return true;
     }
@@ -81,48 +111,28 @@ public class MyLinkedList{
 
     public String toString(){
 	LNode current = start;
-	String ans = "";
+	String ans = "[";
 	while(current != null){
-	    ans += "[" + current.getValue() + "]";
+	    ans += current.getValue();
+	    if (current.getNext()!=null){
+		ans+=", ";
+	    }
 	    current = current.getNext();
 	}
-	return ans;
+	return ans+"]";
     }
 
-    private class LNode{
-	private int value;
-	private LNode next; 
-
-	public LNode(int value){
-	    this.value = value;
-	    next = null;
-	}
-
-	public LNode(int value, LNode next){
-	    this.value = value;
-	    this.next = next;
-	}
-
-	public int getValue(){
-	    return value;
-	}
-
-	public void setValue(int value){
-	    this.value = value;
-	}
-
-	public LNode getNext(){
-	    return next;
-	}
-
-	public void setNext(LNode next){
-	    this.next = next;
-	}
-    }
 
     public static void main(String[]args){
-	MyLinkedList test = new MyLinkedList();
-	test.add(9);
-	System.out.println(test.toString());
+	MyLinkedList m = new MyLinkedList();
+	int i = 0;
+	while(i < 100){
+	    m.add(i);
+	    i++;
+	}
+	m.add(54);
+	m.add(-10);
+	m.add(47);
+	System.out.println(m);
     }
 }
