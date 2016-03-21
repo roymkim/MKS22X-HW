@@ -1,8 +1,7 @@
-
-public class MyLinkedList{
+public class MyLinkedList<T>{
     private class LNode{
 	private int value;
-	private LNode next; 
+	private LNode<T> next; 
 
 	public LNode(int v){
 	    value = v;
@@ -30,7 +29,7 @@ public class MyLinkedList{
 	}
     }
 
-    private LNode start;
+    private LNode<T> start;
     private LNode tail;
     private int size;
 
