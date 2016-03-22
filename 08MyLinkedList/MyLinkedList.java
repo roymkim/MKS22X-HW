@@ -159,6 +159,14 @@ public class MyLinkedList<T>{
 	return ans+"]";
     }
 
+    public String toString(boolean b){
+	String ans = "";
+	if (b == true){
+	    ans+="Head : " + start.getValue();
+	    ans+=" Tail : " + tail.getValue();
+	}
+	return ans;
+    }
 
     public static void main(String[]args){
 	MyLinkedList<String> m = new MyLinkedList<String>();
@@ -175,6 +183,9 @@ public class MyLinkedList<T>{
 	System.out.println(m.indexOf("crew"));
 	System.out.println(m.size);
 	System.out.println(m.remove(50));
+	//System.out.println(m);
+	m.remove(51);
+	m.add("DOG");
 	System.out.println(m);
     }
 }
