@@ -35,12 +35,6 @@ public class MyLinkedList<T>{
     private int size;
     private T thing;
 
-    public MyLinkedList(){
-	start = null;
-	tail = null;
-	size = 0;
-    }
-
     public String name(){
 	return "Kim,Roy";
     }
@@ -71,32 +65,38 @@ public class MyLinkedList<T>{
     public int size(){
 	return size;
     }
-    
+   
     public T remove(int index){
 	if (index < 0 || index >= size){
 	    throw new IndexOutOfBoundsException("Out of Bounds");
 	}
-	T ans;
+	LNode removed;
 	LNode current = start;
 	if (index == 0){
-	    ans = current.getValue();
+	    removed = start;
 	    start = current.getNext();
+	    if (removed.getNext() == null){
+		tail = null;
+	    }
 	} else {
-	    for (int i = 0; i < index - 1; i++){
+	    for (int i = 1; i < index; i++){
 		current = current.getNext();
 	    }
-	    ans = current.getNext().getValue();
+	    removed = current.getNext();
 	    current.setNext(current.getNext().getNext());
+	    if (removed.getNext() == null){
+		tail = current;
+	    }
 	}	    
 	size--;
-	return ans;
+	return removed.getValue();
     }
 
     public boolean add(int index, T thing){
 	if (index < 0 || index > size){
 	    throw new IndexOutOfBoundsException("Out of Bounds");
 	}
-	LNode current = start;
+      	LNode current = start;
 	LNode temp = new LNode(thing);
 	if (index == size){
 	    add(thing);
@@ -117,8 +117,8 @@ public class MyLinkedList<T>{
 	return true;
     }
 
-    public boolean add(T thing){
-	if (start == null){
+    public boolean add(T thing){	
+	if (start == null && tail == null){
 	    start = new LNode(thing);
 	    tail = start;
 	} else {
@@ -158,16 +158,17 @@ public class MyLinkedList<T>{
 	}
 	return ans+"]";
     }
-
+    
     public String toString(boolean b){
 	String ans = "";
 	if (b == true){
-	    ans+="Head : " + start.getValue();
+	    ans+=toString();
+	    ans+=" Head : " + start.getValue();
 	    ans+=" Tail : " + tail.getValue();
 	}
 	return ans;
     }
-
+    
     public static void main(String[]args){
 	MyLinkedList<String> m = new MyLinkedList<String>();
 	int i = 0;
