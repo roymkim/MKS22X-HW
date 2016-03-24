@@ -32,19 +32,22 @@ public class MyLinkedList<T> implements Iterable<T>{
     }
 
     public class MyLinkedListIterator implements Iterator<T>{
-	private LNode current = start;
+	private LNode next;
 	
-	public MyLinkedListIterator(LNode current){
-	    this.current = current;
+	public MyLinkedListIterator(){
+	    next = start;
 	}
 
 	public boolean hasNext(){
-	    return current.getNext() != null;
+	    return next != null;
 	}
 
 	public T next(){
-	    T value = current.getValue();
-	    current = current.getNext();
+	    if(!hasNext()){
+		throw new NoSuchElementException();
+	    }
+	    T value = next.getValue();
+	    next = next.getNext();
 	    return value;
 	}
 
@@ -96,7 +99,7 @@ public class MyLinkedList<T> implements Iterable<T>{
    
     public T remove(int index){
 	if (index < 0 || index >= size){
-	    throw new IndexOutOfBoundsException("Out of Bounds");
+	    throw new IndexOutOfBoundsException("Index: "+index+", size: "+size());
 	}
 	LNode removed;
 	LNode current = start;
@@ -198,23 +201,10 @@ public class MyLinkedList<T> implements Iterable<T>{
     }
     
     public static void main(String[]args){
-	MyLinkedList<String> m = new MyLinkedList<String>();
-	int i = 0;
-	while(i < 50){
-	    m.add("blues");
-	    i++;
+	MyLinkedList<Integer> n = new MyLinkedList<>();
+	for (int i = 0; i < 10; i++){
+	    n.add(i); //autoboxes
 	}
-	m.add("crew");
-	System.out.println(m.size);
-	System.out.println(m);
-	m.add(50, "LION");
-	m.add(5, "TIGER");
-	System.out.println(m.indexOf("crew"));
-	System.out.println(m.size);
-	System.out.println(m.remove(50));
-	//System.out.println(m);
-	m.remove(51);
-	m.add("DOG");
-	System.out.println(m);
+	System.out.println(n);
     }
 }
