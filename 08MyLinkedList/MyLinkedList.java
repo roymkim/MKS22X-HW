@@ -62,7 +62,7 @@ public class MyLinkedList<T> implements Iterable<T>{
     private T thing;
 
     public Iterator<T> iterator(){
-	return new MyLinkedListIterator(start);
+	return new MyLinkedListIterator();
     }
 
 
