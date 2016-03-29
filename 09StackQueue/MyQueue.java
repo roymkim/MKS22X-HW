@@ -1,3 +1,4 @@
+import java.util.*;
 public class MyQueue<T> extends MyLinkedList{
     private MyLinkedList<T> queue;
     public MyQueue(){
@@ -26,16 +27,24 @@ public class MyQueue<T> extends MyLinkedList{
      * @exception java.util.NoSuchElementException if the queue is empty.
      */
     public T peek(){
-    
+	if (queue.size() == 0){
+	    throw new NoSuchElementException();
+	} else {
+	    return queue.get(0);
+	}
     }
 
     /**
      * Returns the number of items currently in the queue.
      */
-    int size();
+    public int size(){
+	return queue.size();
+    }
 
     /**
      * Returns whether the queue is empty or not.
      */
-    boolean isEmpty();
+    public boolean isEmpty(){
+	return queue.size() == 0;
+    }
 }

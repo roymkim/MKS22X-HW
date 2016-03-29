@@ -2,7 +2,7 @@ import java.util.*;
 public class MyStack<T> extends MyLinkedList{
     private MyLinkedList<T> stack;
   
-    public MyStack{
+    public MyStack(){
 	stack = new MyLinkedList<T>(); 
     }
 
