@@ -7,10 +7,10 @@ public class ParenDemo{
 	int i = 0;
 	while (i < str.length()){
 	    char c = s.charAt(i);
-	    if (c == '{' || c == '(' || c == '['){
+	    if (c == '{' || c == '(' || c == '[' || c == '<'){
 		stack.push(c);
 	    }
-	    if (c == '}' || c == ')' || c == ']'){
+	    if (c == '}' || c == ')' || c == ']' || c == '>'){
 		
 	    }
 	    i++;
