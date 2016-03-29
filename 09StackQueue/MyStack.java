@@ -1,28 +1,51 @@
-public class MyStack<T>{
+import java.util.*;
+public class MyStack<T> extends MyLinkedList{
+    private MyLinkedList<T> stack;
+  
+    public MyStack{
+	stack = new MyLinkedList<T>(); 
+    }
+
     /**
      * Adds the given item to the top of the stack.
      */
-    void push(T item);
+    public void push(T item){
+	stack.add(0,item);
+    }
 
     /**
      * Removes the top item from the stack and returns it.
      * @exception java.util.NoSuchElementException if the queue is empty.
      */
-    T pop();
+    public T pop(){
+	if (size() == 0){
+	    throw new NoSuchElementException();
+	}
+	return stack.remove(0); 
+    }
 
     /**
      * Returns the top item from the stack without popping it.
      * @exception java.util.NoSuchElementException if the queue is empty.
      */
-    T peek();
+    public T peek(){
+	if (size() == 0){
+	    throw new NoSuchElementException();
+	}
+	return stack.get(0);
+    }
 
     /**
      * Returns the number of items currently in the stack.
      */
-    int size();
+    public int size(){
+	return stack.size();
+    }
 
     /**
      * Returns whether the stack is empty or not.
      */
-    boolean isEmpty();
+    public boolean isEmpty(){
+	return stack.size()==0;
+    }
 }
