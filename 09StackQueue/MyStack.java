@@ -48,4 +48,24 @@ public class MyStack<T> extends MyLinkedList{
     public boolean isEmpty(){
 	return stack.size()==0;
     }
+
+    public static void main(String[]args){
+	MyStack<Integer> a = new MyStack<Integer>();
+	Stack<Integer> b = new Stack<Integer>();
+
+	for (int i = 0; i < 100; i++){
+	    a.push(i);
+	    b.push(i);
+	}
+
+	for (int i = 1; i < 100; i++){
+	    a.pop();
+	    System.out.println(a.peek());
+	    b.pop();
+	    System.out.println(b.peek());
+	}
+	
+	System.out.println(a.isEmpty() == b.empty());
+	
+    }
 }
