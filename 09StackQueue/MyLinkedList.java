@@ -3,6 +3,7 @@ public class MyLinkedList<T> implements Iterable<T>{
     private class LNode{
 	private T value;
 	private LNode next;
+	private LNode prev;
 	public LNode(T v){
 	    value = v;
 	}
@@ -12,6 +13,9 @@ public class MyLinkedList<T> implements Iterable<T>{
 	public LNode getNext(){
 	    return next;
 	}
+	public LNode getPrev(){
+	    return prev;
+	}
 	public T setValue(T v){
 	    T old = value;
 	    value = v;
@@ -19,6 +23,9 @@ public class MyLinkedList<T> implements Iterable<T>{
 	}
 	public void setNext(LNode n){
 	    next = n;
+	}
+	public void setPrev(LNode n){
+	    prev = n;
 	}
 	public String toString(){
 	    return value.toString();
@@ -45,6 +52,11 @@ public class MyLinkedList<T> implements Iterable<T>{
 		    T value = current.getValue();
 		    current = current.getNext();
 		    return value;
+		}
+		public T previous(){
+		    if(!hasPrev()){
+			throw new NoSuchElementException();
+		    }
 		}
 		public void remove(){
 		    throw new UnsupportedOperationException();
