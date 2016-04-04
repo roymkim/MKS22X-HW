@@ -1,4 +1,7 @@
 public class MyDeque{
+    private int size;
+    private Object[] queue;
+
     public MyDeque<T>{
     }
 
