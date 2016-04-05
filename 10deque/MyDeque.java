@@ -1,14 +1,18 @@
-public class MyDeque{
+public class MyDeque<T>{
     private int start, end;
     private int size;
     private T[] data;
 
-    public MyDeque<T>{
-	data = (T[]) new Object[10];
+    public MyDeque(){
+	temp = (T[]) new Object[10];
     }
     
     private void resize(){
-    
+	T[] temp = (T[]) new Object[data.length * 2];
+	for (int i = 0; i < data.length; i++){
+	    temp[i] = data[i];
+	}
+	data = temp;
     }
 
     public void addFirst(T value){
@@ -36,15 +40,29 @@ public class MyDeque{
     }
 
     public T removeFirst(){
-    
+	
     }
     
-    public T removeLast(){
-    }
+    //    public T removeLast(){
+    //return;
+    //}
 
     public T getFirst(){
+	if (size == 0){
+	    throw new NoSuchElementException();
+	}
+	return (T) data[start+1];
     }
 
     public T getLast(){
+	if (size == 0){
+	    throw new NoSuchElementException();
+	}
+	return (T) data[end-1];
+    }
+
+    public String toString(){
+	String ans = "[ ";
+	int n = 
     }
 }
