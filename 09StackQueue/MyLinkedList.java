@@ -53,12 +53,7 @@ public class MyLinkedList<T> implements Iterable<T>{
 		    current = current.getNext();
 		    return value;
 		}
-		public T previous(){
-		    if(!hasPrev()){
-			throw new NoSuchElementException();
-		    }
-		}
-		public void remove(){
+       		public void remove(){
 		    throw new UnsupportedOperationException();
 		}
 	    };
@@ -69,21 +64,16 @@ public class MyLinkedList<T> implements Iterable<T>{
 	    {
 		private LNode current = tail;
 
-                public boolean hasNext(){
+                public boolean hasPrev(){
                     return current != null;
                 }
-                public T next(){
-                    if(!hasNext()){
+                public T prev(){
+                    if(!hasPrev()){
                         throw new NoSuchElementException();
                     }
                     T value = current.getValue();
                     current = current.getPrev();
                     return value;
-                }
-                public T previous(){
-                    if(!hasPrev()){
-                        throw new NoSuchElementException();
-                    }
                 }
                 public void remove(){
                     throw new UnsupportedOperationException();
@@ -169,6 +159,8 @@ public class MyLinkedList<T> implements Iterable<T>{
 	    LNode p = getNth(index-1);
 	    temp.setNext(p.getNext());
 	    p.setNext(temp);
+	    temp.getNext().setPrev(temp);
+	    p.getNext().setPrev(p);
 	    if(tail.getNext() != null){
 		tail=tail.getNext();
 	    }
