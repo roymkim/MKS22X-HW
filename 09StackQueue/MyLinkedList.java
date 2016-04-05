@@ -64,11 +64,11 @@ public class MyLinkedList<T> implements Iterable<T>{
 	    {
 		private LNode current = tail;
 
-                public boolean hasPrev(){
+                public boolean hasNext(){ //really hasPrev();
                     return current != null;
                 }
-                public T prev(){
-                    if(!hasPrev()){
+                public T next(){ //should be named prev
+                    if(!hasNext()){
                         throw new NoSuchElementException();
                     }
                     T value = current.getValue();
@@ -142,7 +142,7 @@ public class MyLinkedList<T> implements Iterable<T>{
 	    temp.getNext().setPrev(p);
 	} 
 	size--;
-	return temp.getValue;
+	return temp.getValue();
     }
     public boolean add(int index, T value){
 	if(index < 0 || index > size()){
