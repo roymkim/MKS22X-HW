@@ -36,8 +36,9 @@ public class MyDeque<T>{
 	} 
 	if (start == 0){
 	    start = data.length - 1;
+	} else {
+	    start--;
 	}
-	start--;
 	data[start] = value;
 	size++;
     }
@@ -46,10 +47,11 @@ public class MyDeque<T>{
 	if (size == data.length){
 	    resize();
 	} 
-	if (end == data.length){
+	if (end == data.length-1){
 	    end = 0;
+	} else {
+	    end++;
 	}
-	end++;
 	data[end] = value;
 	size++;
     }
@@ -99,5 +101,12 @@ public class MyDeque<T>{
 
     public int size(){
 	return size;
+    }
+
+    public boolean isEmpty(){
+	if (size() == 0){
+	    return true;
+	}
+	return false;
     }
 }
