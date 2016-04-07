@@ -4,6 +4,10 @@ public class MyDeque<T>{
     private int size;
     private T[] data;
 
+    public String name(){
+	return "7,Roy,Kim";
+    }
+
     @SuppressWarnings("unchecked")
     public MyDeque(){
 	data = (T[]) new Object[10]; 
@@ -12,9 +16,17 @@ public class MyDeque<T>{
     @SuppressWarnings("unchecked")
     private void resize(){
 	T[] temp = (T[]) new Object[data.length * 2];
-	for (int i = 0; i < data.length; i++){
-	    temp[i] = data[i];
+	int i = 0;
+	for (int j = 0; j < data.length; j++){
+	    if (start + j < data.length){
+		temp[j] = data[start+j];
+	    } else {
+		temp[j] = data[i];
+		i++;
+	    }
 	}
+	start = 0;
+	end = start + size() - 1;
 	data = temp;
     }
 
@@ -22,11 +34,11 @@ public class MyDeque<T>{
 	if (size == data.length){
 	    resize();
 	} 
-	if (start < 0){
+	if (start == 0){
 	    start = data.length - 1;
 	}
-	data[start] = value;
 	start--;
+	data[start] = value;
 	size++;
     }
     
@@ -37,8 +49,8 @@ public class MyDeque<T>{
 	if (end == data.length){
 	    end = 0;
 	}
-	data[end] = value;
 	end++;
+	data[end] = value;
 	size++;
     }
 
@@ -46,41 +58,46 @@ public class MyDeque<T>{
 	if (size == 0){
 	    throw new NoSuchElementException();
 	}
-	T ans = data[start];
-	if (start == data.length-1){
-	    start = 0;
-	} else {
+	T removed = data[start];
+	data[start] = null;
+	if (start < data.length - 1){
 	    start++;
+	} else {
+	    start = 0;
 	}
 	size--;
-	return ans;
+	return removed;
     }
     
     public T removeLast(){
 	if (size == 0){
 	    throw new NoSuchElementException();
 	}
-	T ans = data[end];
-	if (end == 0){
-	    end = data.length-1;
-	} else {
+	T removed = data[end];
+	if (end > 0){
 	    end--;
+	} else {
+	    end = data.length - 1;
 	}
 	size--;
-	return ans;
+	return removed;
     }
 
     public T getFirst(){
 	if (size == 0){
 	    throw new NoSuchElementException();
 	}
-	return data[start+1];
+	return data[start];
     }
 
     public T getLast(){
 	if (size == 0){
 	    throw new NoSuchElementException();
 	}
-	return data[end-1];
+	return data[end];
+    }
+
+    public int size(){
+	return size;
     }
 }
