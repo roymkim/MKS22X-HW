@@ -3,15 +3,28 @@ import java.io.*;
 
 public class BetterMaze{
     private class Node{
+	private int row;
+	private int col;
+	
+	private Node(int r, int c){
+	    row = r;
+	    col = c;
+	}
+	
+	private int getRow(){
+	    return row;
+	}
 
-    
+	private int getCol(){
+	    return col;
+	}
     }
     
     private char[][] maze;
     private int[] solution;
     private int startRow, startCol;
     private Frontier<Node> placesToGo;
-    private boolean  animate;
+    private boolean animate;
 
     /**return a copy of solution.
       This should be : [x1,y1,x2,y2,x3,y3...]
