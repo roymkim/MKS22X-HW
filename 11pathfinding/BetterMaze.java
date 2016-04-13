@@ -5,10 +5,12 @@ public class BetterMaze{
     private class Node{
 	private int row;
 	private int col;
+	private Node prev;
 	
-	private Node(int r, int c){
-	    row = r;
-	    col = c;
+	private Node(int row, int col, Node prev){
+	    this.row = row;
+	    this.col = col;
+	    this.prev = prev;
 	}
 	
 	private int getRow(){
@@ -17,6 +19,10 @@ public class BetterMaze{
 
 	private int getCol(){
 	    return col;
+	}
+
+	private Node getPrev(){
+	    return prev;
 	}
     }
     
@@ -49,9 +55,18 @@ public class BetterMaze{
     
     public boolean solve(){ 
 	placesToGo.add(new Node(startRow, startCol, null));
+	maze[startRow][startCol] = '.';
 	while (placesToGo.hasNext()){
-	
+	    if (animate){
+		System.out.println(this);
+		wait(20);
+	    }
+	    Node next = placesToGo.next();
+	    for (Node n : getNeighbors(next)){
+		
+	    }
 	}
+	return false;
     }
 
     public void setAnimate(boolean b){
