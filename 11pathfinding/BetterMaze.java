@@ -39,7 +39,7 @@ public class BetterMaze{
       *called (otherwise an empty array is returned)
       *Postcondition:  the correct solution is in the returned array
       **/
-    public int[] solutionCoordinates(){ \
+    public int[] solutionCoordinates(){ 
 	return solution;
     }    
 
@@ -56,6 +56,7 @@ public class BetterMaze{
     public boolean solve(){ 
 	placesToGo.add(new Node(startRow, startCol, null));
 	maze[startRow][startCol] = '.';
+	int solutionCounter = 0;
 	while (placesToGo.hasNext()){
 	    if (animate){
 		System.out.println(this);
@@ -64,13 +65,24 @@ public class BetterMaze{
        	    Node next = placesToGo.next();
 	    int r = next.getRow();
 	    int c = next.getCol();
-	    placesToGo.remove();
 	    if (maze[r][c] == 'E'){
+		solution = new int[(solutionCounter+1)*2];
+		solution[0] = startRow;
+		solution[1] = startCol;
+		for (int i = solution.length-1; i > 1; i-=2){
+		    solution[i] = next.getCol();
+		    solution[i-1] = next.getRow();
+		    next = next.getPrev();
+		}
 		return true;
+		
 	    }
 	    for (Node n : getNeighbors(next)){
+		maze[n.getRow()][n.getCol()] = '.';
 		placesToGo.add(n);
 	    }
+	    solutionCounter++;
+	    
 	}
 	return false;
     }
