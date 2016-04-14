@@ -59,18 +59,43 @@ public class BetterMaze{
 	while (placesToGo.hasNext()){
 	    if (animate){
 		System.out.println(this);
-		wait(20);
+		wait(100);
 	    }
-	    Node next = placesToGo.next();
+       	    Node next = placesToGo.next();
+	    int r = next.getRow();
+	    int c = next.getCol();
+	    placesToGo.remove();
+	    if (maze[r][c] == 'E'){
+		return true;
+	    }
 	    for (Node n : getNeighbors(next)){
-		
+		placesToGo.add(n);
 	    }
 	}
 	return false;
     }
 
     public void setAnimate(boolean b){
-    
+	animate = b;
+    }
+
+    private ArrayList<Node> getNeighbors(Node next){
+	int r = next.getRow();
+	int c = next.getCol();
+	ArrayList<Node> Neighbors = new ArrayList<Node>();
+	if (r-1>=0 && c>=0 && maze[r-1][c] == ' '){
+	    Neighbors.add(new Node(r-1, c, next));
+	}
+        if (r+1<maze.length && c>=0 && maze[r+1][c] == ' '){
+            Neighbors.add(new Node(r+1, c, next));
+        }
+        if (r>=0 && c-1>=0 && maze[r][c-1] == ' '){
+            Neighbors.add(new Node(r, c-1, next));
+        }
+        if (r>=0 && c+1<maze[r].length && maze[r][c+1] == ' '){
+            Neighbors.add(new Node(r, c+1, next));
+        }
+	return Neighbors;
     }
 
     public BetterMaze(String filename){
