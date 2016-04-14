@@ -6,11 +6,18 @@ public class BetterMaze{
 	private int row;
 	private int col;
 	private Node prev;
+	private int step;
 	
 	private Node(int row, int col, Node prev){
 	    this.row = row;
 	    this.col = col;
 	    this.prev = prev;
+	    this.step = 0;
+	    if (prev!=null){
+		step = prev.getStep()+1;
+	    } else {
+		step = 1;
+	    }
 	}
 	
 	private int getRow(){
@@ -23,6 +30,10 @@ public class BetterMaze{
 
 	private Node getPrev(){
 	    return prev;
+	}
+
+	private int getStep(){
+	    return step;
 	}
     }
     
@@ -55,34 +66,30 @@ public class BetterMaze{
     
     public boolean solve(){ 
 	placesToGo.add(new Node(startRow, startCol, null));
-	maze[startRow][startCol] = '.';
-	int solutionCounter = 0;
 	while (placesToGo.hasNext()){
 	    if (animate){
 		System.out.println(this);
-		wait(100);
+		wait(20);
 	    }
        	    Node next = placesToGo.next();
 	    int r = next.getRow();
 	    int c = next.getCol();
 	    if (maze[r][c] == 'E'){
-		solution = new int[(solutionCounter+1)*2];
-		solution[0] = startRow;
-		solution[1] = startCol;
-		for (int i = solution.length-1; i > 1; i-=2){
-		    solution[i] = next.getCol();
+		solution = new int[next.getStep()*2];
+		int i = solution.length-1;
+		while (i>0){
+     		    solution[i] = next.getCol();
 		    solution[i-1] = next.getRow();
+		    maze[next.getRow()][next.getCol()] = '@';
 		    next = next.getPrev();
+		    i-=2;
 		}
-		return true;
-		
+       		return true;		
 	    }
 	    for (Node n : getNeighbors(next)){
-		maze[n.getRow()][n.getCol()] = '.';
 		placesToGo.add(n);
 	    }
-	    solutionCounter++;
-	    
+	    maze[next.getRow()][next.getCol()] = '.';
 	}
 	return false;
     }
@@ -95,16 +102,16 @@ public class BetterMaze{
 	int r = next.getRow();
 	int c = next.getCol();
 	ArrayList<Node> Neighbors = new ArrayList<Node>();
-	if (r-1>=0 && c>=0 && maze[r-1][c] == ' '){
+	if (r-1>=0 && c>=0 && (maze[r-1][c] == ' ' || maze[r-1][c] == 'E')){
 	    Neighbors.add(new Node(r-1, c, next));
 	}
-        if (r+1<maze.length && c>=0 && maze[r+1][c] == ' '){
+        if (r+1<maze.length && c>=0 && (maze[r+1][c] == ' ' || maze[r+1][c] == 'E')){
             Neighbors.add(new Node(r+1, c, next));
         }
-        if (r>=0 && c-1>=0 && maze[r][c-1] == ' '){
+	if (r>=0 && c-1>=0 && (maze[r][c-1] == ' ' || maze[r][c-1] == 'E')){
             Neighbors.add(new Node(r, c-1, next));
         }
-        if (r>=0 && c+1<maze[r].length && maze[r][c+1] == ' '){
+        if (r>=0 && c+1<maze[r].length && (maze[r][c+1] == ' ' || maze[r][c+1] == 'E')){
             Neighbors.add(new Node(r, c+1, next));
         }
 	return Neighbors;
