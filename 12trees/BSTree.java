@@ -1,8 +1,26 @@
 public class BSTree implements Comparable<Name>{
-    private class TreeNode{
+    private class Node{
+	T data;
+	Node left;
+	Node right;
+	
+	public int height(){
+	    return 0;
+	}
+
+	public void add(T value){
+	}
+
+	public String toString(){
+	    return "";
+	}
+
+	public boolean contains(T value){
+	    return false;
+	}
     }
 
-    private TreeNode<T> root;
+    private Node root;
     
     public BSTree(){
 	root = null;
