@@ -83,13 +83,23 @@ public class BSTree implements Comparable<Name>{
     public void add(T value){
     }
 
-    //public String toString(){
-    //}
+    public String toString(){
+	return ""
+    }
 
     public boolean contains(T value){
+	if (root.getData() == null){
+	    return false;
+	} else {
+	    return root.contains(value);
+	}	
     }
 
     public int getHeight(){
+	if (root.getData() == null){
+	    return 0;
+	}
+	return root.height();
     }
 
     public T remove(T value){
