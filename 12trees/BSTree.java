@@ -1,35 +1,55 @@
-public class BSTree implements Comparable<Name>{
+public class BSTree<T extends Comparable<T>>{
     private class Node{
 	T data;
 	Node left;
 	Node right;
-      	
+
+	public Node(T value){
+	    data = value;
+	}
+
+	public void setLeft(Node child){
+	    left = child;
+	}
+
+	public void setRight(Node child){
+	    right = child;
+	}
+
+	public Node getLeft(){
+	    return left;
+	}
+
+	public Node getRight(){
+	    return right;
+	}
+	  
+	public T getData(){
+	    return data;
+	}
+	
 	public int height(){
 	    if (left == null && right == null){
 		return 1;
 	    } else if (left == null && right != null){
-		return getRight.height() + 1;
+		return right.height() + 1;
 	    } else if (right == null && left != null){
-		return getLeft.height() + 1;
+		return left.height() + 1;
 	    } else {
-		return Math.max(getLeft.height(), getRight.height()) + 1;
+		return Math.max(left.height(), right.height()) + 1;
 	    }
 	}
 
 	public void add(T value){
-	    if (data == null){
-		data = value;
-	    } else if {
+	    if (value.compareTo(data)<0){
 		if (left == null){
-		    left = new Node();
-		    left.setData(value);
+		    left = new Node(value);
 		} else {
 		    left.add(value);
 		}
 	    } else {
 		if (right == null){
-		    right = new Node();
-		    right.setData(value);
+		    right = new Node(value);
 		} else {
 		    right.add(value);
 		}
@@ -44,7 +64,7 @@ public class BSTree implements Comparable<Name>{
 	    } else if (right == null){
 		return data + " " + left + " _";
 	    } else {
-		return " " data + " " + left + " " + right;
+		return " " + data + " " + left + " " + right;
 	    }
 	}
 
@@ -60,31 +80,20 @@ public class BSTree implements Comparable<Name>{
 	    }
 	    return false;
 	}
-
-	public T getData(){
-	    return data;
-	}
-	
-	public void setData(T data){
-	    this.data = data;
-	}
-
     }
 
     private Node root;
-    
-    public BSTree(){
-	root = null;
-    }
-    
-    public int compareTo(Name n){
-    }
-    
+                
     public void add(T value){
+	if (root == null){
+	    root = new Node(value);
+	} else {
+	    root.add(value);
+	}
     }
 
     public String toString(){
-	return ""
+	return root.toString();
     }
 
     public boolean contains(T value){
@@ -101,8 +110,6 @@ public class BSTree implements Comparable<Name>{
 	}
 	return root.height();
     }
-
-    public T remove(T value){
-    }
-
+ 
+    
 }
