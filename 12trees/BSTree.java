@@ -109,7 +109,6 @@ public class BSTree<T extends Comparable<T>>{
 	    return 0;
 	}
 	return root.height();
-    }
- 
+    } 
     
 }
