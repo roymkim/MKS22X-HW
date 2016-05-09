@@ -16,7 +16,7 @@ public class MyHeap<T extends Comparable<T>>{
 	isMax = true;
 	size = array.length;
     }
-    
+
     /**pushDown
        precondition: datas[k]'s children are valid heaps
        postconditions:-the element at index k has been 
@@ -34,6 +34,9 @@ public class MyHeap<T extends Comparable<T>>{
        -data is a valid heap
     **/
     private void pushUp(int k){
+	if (k > 1 && compare(data[k], data[k/2])){
+	    
+	}
     }
     
     private void heapify(){
@@ -51,6 +54,11 @@ public class MyHeap<T extends Comparable<T>>{
     }
     
     public void add(T x){
+	if (size == data.length){
+	    this.doubleSize();
+	}
+	data[size] = x;
+	size++;
     }
     
     private void doubleSize(){
