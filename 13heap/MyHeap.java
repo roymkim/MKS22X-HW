@@ -61,9 +61,18 @@ public class MyHeap<T extends Comparable<T>>{
     }
     
     private void heapify(){
+	
     }
     
     public T delete(){
+	if (size == 0){
+	    throw new NoSuchElementException();
+	}
+	T temp = data[1];
+	data[1] = data[size];
+	data[size] = null;
+	size--;
+	return temp;
     }
 
     public T peek(){
