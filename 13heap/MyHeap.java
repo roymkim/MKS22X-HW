@@ -24,6 +24,20 @@ public class MyHeap<T extends Comparable<T>>{
        -data[k] and is a valid heap
     **/
     private void pushDown(int k){
+	int left = 2 * (k + 1) - 1;
+	int right = 2 * (k + 1);
+	int temp = data[k];
+	if (right >= size || temp < data[left] && temp < data[right]){
+	    return -1;
+	} else if (data[left] < data[right]){
+	    data[i] = data[left];
+	    data[left] = temp;
+	    return left;
+	} else {
+	    data[i] = data[right];
+	    data[right] = temp;
+	    return right;
+	}
     }
     
     /**pushUp
@@ -34,9 +48,16 @@ public class MyHeap<T extends Comparable<T>>{
        -data is a valid heap
     **/
     private void pushUp(int k){
-	if (k > 1 && compare(data[k], data[k/2])){
-	    
+	while (k > 1 && compare(data[k/2].compareTo(data[k]))){
+	    swap(k, k/2);
+	    k = k/2; 
 	}
+    }
+    
+    private void swap(int i, int j){
+	T temp = data[j];
+	data[j] = data[i];
+	data[i] = temp;
     }
     
     private void heapify(){
