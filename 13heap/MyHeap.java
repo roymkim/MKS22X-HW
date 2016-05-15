@@ -19,6 +19,10 @@ public class MyHeap<T extends Comparable<T>>{
 	heapify();
     }
 
+    public int getSize(){
+	return size;
+    }
+
     public boolean compare(T first, T second){
 	if(isMax){
 	    return first.compareTo(second) > 0;
